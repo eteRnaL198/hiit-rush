@@ -1,11 +1,12 @@
 "use client";
 
-import Timer from "@/app/timer";
+import Timer from "@/features/timer/timer";
+import Main from "@/layouts/main";
 
 export default function Home() {
   return (
-    <main className="flex flex-col text-2xl mt-8">
+    <Main>
       <Timer />
-    </main>
+    </Main>
   );
 }

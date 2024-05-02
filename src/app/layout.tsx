@@ -1,7 +1,7 @@
 "use client";
 
 import "./globals.css";
-import Header from "@/app/header";
+import Header from "@/layouts/header";
 
 export default function RootLayout({
   children,
