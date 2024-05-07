@@ -1,3 +1,5 @@
+import Input from "@/components/input";
+
 type Props = {
   readyTime: number;
   workoutTime: number;
@@ -23,11 +25,9 @@ const IntervalSetting = ({
     <div className="grid grid-cols-2 gap-4 place-items-center">
       <label htmlFor="interval-ready">Ready</label>
       <div className="grid grid-cols-2 gap-1">
-        <input
-          className="shadow-inner px-4 max-w-full border-4 border-gray-300 outline-none rounded-full"
+        <Input
           id="interval-ready"
-          type="number"
-          inputMode="numeric"
+          type="text"
           value={readyTime}
           onChange={(e) => {
             setReadyTime(Number(e.target.value));
@@ -37,11 +37,9 @@ const IntervalSetting = ({
       </div>
       <label htmlFor="interval-workout">Workout</label>
       <div className="grid grid-cols-2 gap-1">
-        <input
-          className="shadow-inner px-4 max-w-full border-4 border-gray-300 outline-none rounded-full"
+        <Input
           id="interval-workout"
-          type="number"
-          inputMode="numeric"
+          type="text"
           value={workoutTime}
           onChange={(e) => {
             setWorkoutTime(Number(e.target.value));
@@ -51,11 +49,9 @@ const IntervalSetting = ({
       </div>
       <label htmlFor="interval-rest">Rest</label>
       <div className="grid grid-cols-2 gap-1">
-        <input
-          className="shadow-inner px-4 max-w-full border-4 border-gray-300 outline-none rounded-full"
+        <Input
           id="interval-rest"
-          type="number"
-          inputMode="numeric"
+          type="text"
           value={restTime}
           onChange={(e) => {
             setRestTime(Number(e.target.value));
@@ -65,11 +61,9 @@ const IntervalSetting = ({
       </div>
       <label htmlFor="interval-set">Set</label>
       <div className="grid grid-cols-2 gap-1">
-        <input
-          className="shadow-inner px-4 max-w-full border-4 border-gray-300 outline-none rounded-full"
+        <Input
           id="interval-set"
-          type="number"
-          inputMode="numeric"
+          type="text"
           value={setCount}
           onChange={(e) => {
             setSetCount(Number(e.target.value));

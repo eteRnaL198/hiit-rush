@@ -6,7 +6,7 @@ type Props = {
 const Button = ({ label, onClick }: Props) => {
   return (
     <button
-      className="nm-flat-gray-500 rounded-full px-8 py-4 text-white font-bold"
+      className=" bg-gray-200 shadow-lg rounded-full px-8 py-4 font-bold"
       onClick={onClick}
     >
       {label}
