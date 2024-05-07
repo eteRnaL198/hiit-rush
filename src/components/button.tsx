@@ -1,6 +1,6 @@
 type Props = {
   label: string;
-  className: string;
+  className?: string;
   onClick: () => void;
 };
 

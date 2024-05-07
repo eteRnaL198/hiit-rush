@@ -12,7 +12,7 @@ const Input = ({ className, id, type, value, onChange }: Props) => {
       className={`shadow-inner px-4 max-w-full border-4 border-gray-300 outline-none rounded-full ${className}`}
       id={id}
       type={type}
-      inputMode="text"
+      inputMode="numeric"
       value={value}
       onChange={onChange}
     />

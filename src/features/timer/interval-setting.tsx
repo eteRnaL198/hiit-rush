@@ -27,7 +27,7 @@ const IntervalSetting = ({
       <div className="grid grid-cols-2 gap-1">
         <Input
           id="interval-ready"
-          type="text"
+          type="number"
           value={readyTime}
           onChange={(e) => {
             setReadyTime(Number(e.target.value));
@@ -39,7 +39,7 @@ const IntervalSetting = ({
       <div className="grid grid-cols-2 gap-1">
         <Input
           id="interval-workout"
-          type="text"
+          type="number"
           value={workoutTime}
           onChange={(e) => {
             setWorkoutTime(Number(e.target.value));
@@ -51,7 +51,7 @@ const IntervalSetting = ({
       <div className="grid grid-cols-2 gap-1">
         <Input
           id="interval-rest"
-          type="text"
+          type="number"
           value={restTime}
           onChange={(e) => {
             setRestTime(Number(e.target.value));
@@ -63,7 +63,7 @@ const IntervalSetting = ({
       <div className="grid grid-cols-2 gap-1">
         <Input
           id="interval-set"
-          type="text"
+          type="number"
           value={setCount}
           onChange={(e) => {
             setSetCount(Number(e.target.value));

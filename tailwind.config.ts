@@ -17,6 +17,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [require("tw-neumorphism")],
+  plugins: [],
 };
 export default config;

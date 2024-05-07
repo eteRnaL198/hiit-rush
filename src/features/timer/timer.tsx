@@ -7,6 +7,7 @@ import {
   DEFAULT_REST_TIME,
   DEFAULT_SET_COUNT,
 } from "@/constant";
+import sound from "/public/ticktack.mp3";
 
 type TimeState = "Ready" | "Workout" | "Rest";
 
@@ -22,8 +23,12 @@ const Timer = () => {
   const [currentSet, setCurrentSet] = useState(1);
 
   useEffect(() => {
+    const audio = new Audio(sound);
     if (isRunning) {
       const timer = setInterval(() => {
+        if (time >= 1 && time <= 4) {
+          audio.play();
+        }
         setTime((time) => time - 1);
         if (time !== 0) {
           return;
