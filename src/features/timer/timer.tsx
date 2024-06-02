@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Button from "@/components/button";
 import IntervalSetting from "@/features/timer/interval-setting";
 import {
@@ -8,8 +8,8 @@ import {
   DEFAULT_SET_COUNT,
 } from "@/constant";
 import sound from "/public/ticktack.mp3";
-
-type TimeState = "Ready" | "Workout" | "Rest";
+import { TimerState } from "@/types";
+import useTimer from "@/hooks/useTimer";
 
 const Timer = () => {
   const [readyTime, setReadyTime] = useState(DEFAULT_READY_TIME);
@@ -19,52 +19,24 @@ const Timer = () => {
 
   const [time, setTime] = useState(DEFAULT_READY_TIME);
   const [isRunning, setIsRunning] = useState<boolean>(false);
-  const [timeState, setTimeState] = useState<TimeState>("Ready");
+  const [timerState, setTimerState] = useState<TimerState>("Ready");
   const [currentSet, setCurrentSet] = useState(1);
 
-  useEffect(() => {
-    const audio = new Audio(sound);
-    if (isRunning) {
-      const timer = setInterval(() => {
-        if (time >= 1 && time <= 4) {
-          audio.play();
-        }
-        setTime((time) => time - 1);
-        if (time !== 0) {
-          return;
-        }
-        if (timeState === "Ready") {
-          setTime(workoutTime);
-          setTimeState("Workout");
-        } else if (timeState === "Workout") {
-          setTime(restTime);
-          setTimeState("Rest");
-          if (currentSet === setCount) {
-            setTime(readyTime);
-            setTimeState("Ready");
-            setIsRunning(false);
-          }
-        } else if (timeState === "Rest") {
-          setCurrentSet((currentSet) => currentSet + 1);
-          setTime(workoutTime);
-          setTimeState("Workout");
-        }
-      }, 1000);
-
-      return () => {
-        clearInterval(timer);
-      };
-    }
-  }, [
-    isRunning,
-    time,
-    timeState,
+  useTimer({
+    sound,
     workoutTime,
     restTime,
     setCount,
-    currentSet,
     readyTime,
-  ]);
+    isRunning,
+    timerState,
+    time,
+    currentSet,
+    setIsRunning,
+    setTimerState,
+    setTime,
+    setCurrentSet,
+  });
 
   return (
     <div className="flex flex-col items-center gap-8">
@@ -78,14 +50,14 @@ const Timer = () => {
         setRestTime={setRestTime}
         setSetCount={setSetCount}
       />
-      <p className="text-4xl">{timeState}</p>
+      <p className="text-4xl">{timerState}</p>
       <p className="text-4xl">{currentSet}</p>
       <p className="text-8xl">{time}</p>
       <div className="flex w-full justify-around">
         <Button
           onClick={() => {
             setTime(readyTime);
-            setTimeState("Ready");
+            setTimerState("Ready");
             setCurrentSet(1);
             setIsRunning(false);
           }}

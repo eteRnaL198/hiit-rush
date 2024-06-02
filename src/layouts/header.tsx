@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import Hamburger from "/public/hamburger.svg";
 import Button from "@/components/button";
 
 const Header = () => {
@@ -11,12 +12,7 @@ const Header = () => {
         <div className="flex justify-between w-5/6 mx-auto py-4">
           <h1 className="text-3xl italic">HIIT Rush🔥</h1>
           <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
-            <Image
-              src="/public/hamburger.svg"
-              alt="Menu"
-              width={40}
-              height={40}
-            />
+            <Image src={Hamburger} alt="Menu" width={40} height={40} />
           </button>
         </div>
       </header>
