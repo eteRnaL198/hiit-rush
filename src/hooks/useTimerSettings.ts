@@ -1,5 +1,4 @@
 import {
-  LOCALSTORAGE_KEY,
   DEFAULT_READY_TIME,
   DEFAULT_REST_TIME,
   DEFAULT_SET_COUNT,
@@ -8,7 +7,7 @@ import {
 import { TimerData } from "@/utils/types";
 import { useEffect, useState } from "react";
 
-import useLocalstorage from "./useLocalstorage";
+import useStorage from "./useStorage";
 
 const defaultTimerSettings: TimerData = {
   readyTime: DEFAULT_READY_TIME,
@@ -19,7 +18,7 @@ const defaultTimerSettings: TimerData = {
 
 const useTimerSettings = () => {
   const { value: storedSettings, setValue: setStoredSettings } =
-    useLocalstorage(LOCALSTORAGE_KEY, defaultTimerSettings);
+    useStorage(defaultTimerSettings);
   const [readyTime, setReadyTime] = useState(storedSettings.readyTime);
   const [workoutTime, setWorkoutTime] = useState(storedSettings.workoutTime);
   const [restTime, setRestTime] = useState(storedSettings.restTime);
