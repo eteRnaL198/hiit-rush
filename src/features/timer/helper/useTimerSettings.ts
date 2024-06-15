@@ -7,7 +7,7 @@ import {
 import { TimerData } from "@/utils/types";
 import { useEffect, useState } from "react";
 
-import useStorage from "./useStorage";
+import useStorage from "@/hooks/useStorage";
 
 const defaultTimerSettings: TimerData = {
   readyTime: DEFAULT_READY_TIME,

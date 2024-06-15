@@ -1,7 +1,7 @@
 "use client";
 
 import Main from "@/components/main";
-import TimerSettings from "@/features/timer/timer-settings";
+import TimerSettings from "@/features/timer/components/timer-settings";
 
 const Setting = ({}) => {
   return (

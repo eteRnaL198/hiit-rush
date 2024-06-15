@@ -2,8 +2,8 @@ import { useState } from "react";
 import Button from "@/components/button";
 import sound from "/public/ticktack.mp3";
 import { TimerState } from "@/utils/types";
-import useTimer from "@/hooks/useTimer";
-import useTimerSettings from "@/hooks/useTimerSettings";
+import useTimer from "@/features/timer/helper/useTimer";
+import useTimerSettings from "@/features/timer/helper/useTimerSettings";
 
 const Timer = () => {
   const { readyTime, workoutTime, restTime, setCount } = useTimerSettings();
