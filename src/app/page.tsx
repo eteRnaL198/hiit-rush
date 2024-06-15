@@ -1,8 +1,8 @@
 "use client";
 
-import Timer from "@/features/timer/timer";
+import Timer from "@/features/timer/components/timer";
 import Main from "@/components/main";
-import Video from "@/features/video/video";
+import Video from "@/features/video/components/video";
 
 export default function Home() {
   return (

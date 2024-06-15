@@ -1,5 +1,5 @@
 import NumberInput from "@/components/number-input";
-import useTimerSettings from "@/hooks/useTimerSettings";
+import useTimerSettings from "@/features/timer/helper/useTimerSettings";
 
 const TimerSettings = () => {
   const {
