@@ -1,13 +1,13 @@
 "use client";
 
 import Timer from "@/features/timer/timer";
-import Main from "@/layouts/main";
-import Bgm from "@/features/bgm/bgm";
+import Main from "@/components/main";
+import Video from "@/features/video/video";
 
 export default function Home() {
   return (
     <Main>
-      <Bgm />
+      <Video />
       <Timer />
     </Main>
   );

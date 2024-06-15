@@ -1,5 +1,5 @@
 import { useState, useEffect, Dispatch, SetStateAction } from "react";
-import { TimerState } from "@/types";
+import { TimerState } from "@/utils/types";
 
 interface TimerProps {
   sound: string;

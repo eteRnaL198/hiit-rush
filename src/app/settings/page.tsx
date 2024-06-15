@@ -1,9 +1,14 @@
-const Settings = () => {
+"use client";
+
+import Main from "@/components/main";
+import TimerSettings from "@/features/timer/timer-settings";
+
+const Setting = ({}) => {
   return (
-    <div>
-      <h1>Settings</h1>
-    </div>
+    <Main>
+      <TimerSettings />
+    </Main>
   );
 };
 
-export default Settings;
+export default Setting;
