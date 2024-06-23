@@ -1,51 +1,40 @@
-import { useState } from "react";
 import Button from "@/components/button";
 import sound from "/public/ticktack.mp3";
-import { TimerState } from "@/utils/types";
 import useTimer from "@/features/timer/helper/useTimer";
-import useTimerSettings from "@/features/timer/helper/useTimerSettings";
 
 const Timer = () => {
-  const { readyTime, workoutTime, restTime, setCount } = useTimerSettings();
-  const [displayTime, setDisplayTime] = useState(readyTime);
-  const [isRunning, setIsRunning] = useState<boolean>(false);
-  const [timerState, setTimerState] = useState<TimerState>("Ready");
-  const [currentSet, setCurrentSet] = useState(1);
-
-  useTimer({
-    sound,
-    workoutTime,
-    restTime,
-    setCount,
+  const {
     readyTime,
-    isRunning,
+    currentTime,
+    setCurrentTime,
     timerState,
-    time: displayTime,
-    currentSet,
-    setIsRunning,
     setTimerState,
-    setTime: setDisplayTime,
+    currentSet,
     setCurrentSet,
+    isRunning,
+    setIsRunning,
+  } = useTimer({
+    sound,
   });
 
   return (
     <div className="flex flex-col items-center gap-8">
       <p className="text-4xl">{timerState}</p>
       <p className="text-4xl">{currentSet}</p>
-      <p className="text-8xl">{displayTime}</p>
+      <p className="text-8xl">{currentTime}</p>
       <div className="flex w-full justify-around">
         <Button
+          label="Reset"
           onClick={() => {
-            setDisplayTime(readyTime);
+            setCurrentTime(readyTime);
             setTimerState("Ready");
             setCurrentSet(1);
             setIsRunning(false);
           }}
-          label="Reset"
         />
         <Button
-          onClick={() => setIsRunning(!isRunning)}
           label={isRunning ? "Stop" : "Start"}
+          onClick={() => setIsRunning(!isRunning)}
         />
       </div>
     </div>

@@ -1,37 +1,19 @@
-import { useState, useEffect, Dispatch, SetStateAction } from "react";
+import { useState, useEffect } from "react";
+
 import { TimerState } from "@/utils/types";
+import useTimerSettings from "@/features/timer/helper/useTimerSettings";
 
 interface TimerProps {
   sound: string;
-  workoutTime: number;
-  restTime: number;
-  setCount: number;
-  readyTime: number;
-  isRunning: boolean;
-  timerState: TimerState;
-  time: number;
-  currentSet: number;
-  setIsRunning: Dispatch<SetStateAction<boolean>>;
-  setTimerState: Dispatch<SetStateAction<TimerState>>;
-  setTime: Dispatch<SetStateAction<number>>;
-  setCurrentSet: Dispatch<SetStateAction<number>>;
 }
 
-const useTimer = ({
-  sound,
-  workoutTime,
-  restTime,
-  setCount,
-  readyTime,
-  isRunning,
-  timerState,
-  time,
-  currentSet,
-  setIsRunning,
-  setTimerState,
-  setTime,
-  setCurrentSet,
-}: TimerProps): void => {
+const useTimer = ({ sound }: TimerProps) => {
+  const { readyTime, workoutTime, restTime, setCount } = useTimerSettings();
+  const [currentTime, setCurrentTime] = useState(readyTime);
+  const [isRunning, setIsRunning] = useState<boolean>(false);
+  const [timerState, setTimerState] = useState<TimerState>("Ready");
+  const [currentSet, setCurrentSet] = useState(1);
+
   const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
 
   useEffect(() => {
@@ -43,27 +25,27 @@ const useTimer = ({
   useEffect(() => {
     if (isRunning && audio) {
       const timer = setInterval(() => {
-        if (time >= 1 && time <= 4) {
+        if (currentTime >= 1 && currentTime <= 4) {
           audio.play();
         }
-        setTime((prevTime) => prevTime - 1);
-        if (time !== 0) {
+        setCurrentTime((prevTime) => prevTime - 1);
+        if (currentTime !== 0) {
           return;
         }
         if (timerState === "Ready") {
-          setTime(workoutTime);
+          setCurrentTime(workoutTime);
           setTimerState("Workout");
         } else if (timerState === "Workout") {
-          setTime(restTime);
+          setCurrentTime(restTime);
           setTimerState("Rest");
           if (currentSet === setCount) {
-            setTime(readyTime);
+            setCurrentTime(readyTime);
             setTimerState("Ready");
             setIsRunning(false);
           }
         } else if (timerState === "Rest") {
           setCurrentSet((prevSet) => prevSet + 1);
-          setTime(workoutTime);
+          setCurrentTime(workoutTime);
           setTimerState("Workout");
         }
       }, 1000);
@@ -72,7 +54,6 @@ const useTimer = ({
     }
   }, [
     isRunning,
-    time,
     timerState,
     workoutTime,
     restTime,
@@ -81,10 +62,22 @@ const useTimer = ({
     readyTime,
     audio,
     setIsRunning,
-    setTime,
     setTimerState,
     setCurrentSet,
+    currentTime,
   ]);
+
+  return {
+    readyTime,
+    currentTime,
+    setCurrentTime,
+    timerState,
+    setTimerState,
+    currentSet,
+    setCurrentSet,
+    isRunning,
+    setIsRunning,
+  };
 };
 
 export default useTimer;
