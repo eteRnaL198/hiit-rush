@@ -15,6 +15,14 @@ export default function RootLayout({
         name="description"
         content="HIIT Rush is a high-intensity interval training app."
       />
+      <meta
+        httpEquiv="Content-Security-Policy"
+        content="
+          script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.youtube.com;
+          style-src 'self' 'unsafe-inline';
+          default-src 'self'; frame-src 'self' https://www.youtube.com;
+          "
+      />
       <body className="min-h-dvh">
         <Header />
         {children}

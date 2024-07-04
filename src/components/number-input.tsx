@@ -4,14 +4,20 @@ import { useEffect } from "react";
 type Props = {
   defaultValue: string;
   id: string;
-  handleValidChange: (value: number) => void;
+  setValidValue: (value: number) => void;
 };
 
-const NumberInput = ({ defaultValue, id, handleValidChange }: Props) => {
-  const { value, isValid, handleChange } = useNumberInput(defaultValue);
+const NumberInput = ({ defaultValue, id, setValidValue }: Props) => {
+  const { value, isValid, handleChange, setNumber } =
+    useNumberInput(defaultValue);
+
   useEffect(() => {
-    if (isValid) handleValidChange(Number(value));
-  }, [value, handleValidChange, isValid]);
+    if (isValid) setValidValue(Number(value));
+  }, [value, setValidValue, isValid]);
+
+  useEffect(() => {
+    setNumber(defaultValue);
+  }, [defaultValue, setNumber]);
 
   return (
     <div className="flex flex-col">

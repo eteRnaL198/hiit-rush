@@ -1,3 +1,6 @@
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+
 import {
   DEFAULT_READY_TIME,
   DEFAULT_REST_TIME,
@@ -5,9 +8,7 @@ import {
   DEFAULT_WORKOUT_TIME,
 } from "@/utils/constants";
 import { TimerData } from "@/utils/types";
-import { useEffect, useState } from "react";
-
-import useStorage from "@/hooks/useStorage";
+import { getStoredData } from "@/services/localstorage";
 
 const defaultTimerSettings: TimerData = {
   readyTime: DEFAULT_READY_TIME,
@@ -17,16 +18,21 @@ const defaultTimerSettings: TimerData = {
 };
 
 const useTimerSettings = () => {
-  const { value: storedSettings, setValue: setStoredSettings } =
-    useStorage(defaultTimerSettings);
-  const [readyTime, setReadyTime] = useState(storedSettings.readyTime);
-  const [workoutTime, setWorkoutTime] = useState(storedSettings.workoutTime);
-  const [restTime, setRestTime] = useState(storedSettings.restTime);
-  const [setCount, setSetCount] = useState(storedSettings.setCount);
-
+  const [readyTime, setReadyTime] = useState(defaultTimerSettings.readyTime);
+  const [workoutTime, setWorkoutTime] = useState(
+    defaultTimerSettings.workoutTime
+  );
+  const [restTime, setRestTime] = useState(defaultTimerSettings.restTime);
+  const [setCount, setSetCount] = useState(defaultTimerSettings.setCount);
+  const router = useRouter();
   useEffect(() => {
-    setStoredSettings({ readyTime, workoutTime, restTime, setCount });
-  }, [readyTime, workoutTime, restTime, setCount, setStoredSettings]);
+    const storedSettings = getStoredData<TimerData>();
+    if (!storedSettings) return;
+    setReadyTime(storedSettings.readyTime);
+    setWorkoutTime(storedSettings.workoutTime);
+    setRestTime(storedSettings.restTime);
+    setSetCount(storedSettings.setCount);
+  }, [router]);
 
   return {
     readyTime,
