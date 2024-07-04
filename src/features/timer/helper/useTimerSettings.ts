@@ -34,7 +34,6 @@ const useTimerSettings = () => {
       setRestTime(storedSettings.restTime);
       setSetCount(storedSettings.setCount);
     }
-    console.log("read from storage", storedSettings);
   }, [pathname]);
 
   return {
