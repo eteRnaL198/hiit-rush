@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 import {
   DEFAULT_READY_TIME,
@@ -18,23 +18,21 @@ const defaultTimerSettings: TimerData = {
 };
 
 const useTimerSettings = () => {
-  const pathname = usePathname();
   const [readyTime, setReadyTime] = useState(defaultTimerSettings.readyTime);
   const [workoutTime, setWorkoutTime] = useState(
     defaultTimerSettings.workoutTime
   );
   const [restTime, setRestTime] = useState(defaultTimerSettings.restTime);
   const [setCount, setSetCount] = useState(defaultTimerSettings.setCount);
-
+  const router = useRouter();
   useEffect(() => {
     const storedSettings = getStoredData<TimerData>();
-    if (storedSettings) {
-      setReadyTime(storedSettings.readyTime);
-      setWorkoutTime(storedSettings.workoutTime);
-      setRestTime(storedSettings.restTime);
-      setSetCount(storedSettings.setCount);
-    }
-  }, [pathname]);
+    if (!storedSettings) return;
+    setReadyTime(storedSettings.readyTime);
+    setWorkoutTime(storedSettings.workoutTime);
+    setRestTime(storedSettings.restTime);
+    setSetCount(storedSettings.setCount);
+  }, [router]);
 
   return {
     readyTime,

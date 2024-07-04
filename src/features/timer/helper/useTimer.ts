@@ -23,6 +23,13 @@ const useTimer = ({ sound }: TimerProps) => {
   }, [sound]);
 
   useEffect(() => {
+    setCurrentTime(readyTime);
+    setIsRunning(false);
+    setTimerState("Ready");
+    setCurrentSet(1);
+  }, [readyTime]);
+
+  useEffect(() => {
     if (isRunning && audio) {
       const timer = setInterval(() => {
         if (currentTime >= 1 && currentTime <= 4) {
