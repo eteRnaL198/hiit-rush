@@ -1,16 +1,26 @@
 import { LOCALSTORAGE_KEY } from "@/utils/constants";
 
-export const getStoredData = <T>(): T | null => {
+export const getStoredData = <T>(key: string): T | null => {
   if (typeof window === "undefined") {
     return null;
   }
   const storedData = localStorage.getItem(LOCALSTORAGE_KEY);
-  return storedData ? (JSON.parse(storedData) as T) : null;
+  if (!storedData) return null;
+  return JSON.parse(storedData)[key] as T;
 };
 
-export const writeToStorage = (data: any) => {
+export const updateStorage = <T>(newData: { [key: string]: T }) => {
   if (typeof window === "undefined") {
     return;
   }
-  localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(data));
+
+  const existingData = localStorage.getItem(LOCALSTORAGE_KEY);
+  if (!existingData) {
+    localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(newData));
+    return;
+  }
+  localStorage.setItem(
+    LOCALSTORAGE_KEY,
+    JSON.stringify({ ...JSON.parse(existingData), ...newData })
+  );
 };

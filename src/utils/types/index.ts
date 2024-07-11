@@ -6,3 +6,7 @@ export type TimerData = {
   restTime: number;
   setCount: number;
 };
+
+export type MusicData = {
+  id: string;
+};
