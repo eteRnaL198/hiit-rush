@@ -13,17 +13,21 @@ const Navigation = ({ setIsNavOpen }: Props) => {
           className="border-b-2 border-gray-400 w-5/6 text-center py-2"
           onClick={() => setIsNavOpen(false)}
         >
-          <Link href="/">Timer</Link>
+          <Link className="font-bold" href="/">
+            Timer
+          </Link>
         </button>
         <button
           className="border-b-2 border-gray-400 w-5/6 text-center py-2"
           onClick={() => setIsNavOpen(false)}
         >
-          <Link href="/settings">Settings</Link>
+          <Link className="font-bold" href="/settings">
+            Settings
+          </Link>
         </button>
         <Button
           onClick={() => setIsNavOpen(false)}
-          label="close"
+          label="✗ Close"
           className="ffont"
         />
       </div>

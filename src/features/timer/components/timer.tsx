@@ -24,7 +24,7 @@ const Timer = () => {
       <p className="text-8xl">{currentTime}</p>
       <div className="flex w-full justify-around">
         <Button
-          label="Reset"
+          label="↺ Reset"
           onClick={() => {
             setCurrentTime(readyTime);
             setTimerState("Ready");
@@ -33,7 +33,7 @@ const Timer = () => {
           }}
         />
         <Button
-          label={isRunning ? "Stop" : "Start"}
+          label={isRunning ? "■ Stop" : "▶ Start"}
           onClick={() => setIsRunning(!isRunning)}
         />
       </div>

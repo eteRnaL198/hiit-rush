@@ -61,7 +61,7 @@ const TimerSettings = () => {
       </div>
       <div className="mt-6 flex justify-center">
         <Button
-          label="Save"
+          label="✎ Save"
           onClick={() => {
             updateStorage<TimerData>({
               timer: { readyTime, workoutTime, restTime, setCount },

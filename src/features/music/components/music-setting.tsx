@@ -23,7 +23,7 @@ const MusicSetting = () => {
       </div>
       <div className="mt-6 flex justify-center">
         <Button
-          label="Save"
+          label="✎ Save"
           onClick={() => {
             updateStorage<MusicData>({
               music: { id: id },
