@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 
+import { useSound } from "use-sound";
+
 import { TimerState } from "@/utils/types";
 import useTimerSettings from "@/features/timer/helper/useTimerSettings";
 
@@ -14,13 +16,7 @@ const useTimer = ({ sound }: TimerProps) => {
   const [timerState, setTimerState] = useState<TimerState>("Ready");
   const [currentSet, setCurrentSet] = useState(1);
 
-  const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      setAudio(new Audio(sound));
-    }
-  }, [sound]);
+  const [play] = useSound(sound);
 
   useEffect(() => {
     setCurrentTime(readyTime);
@@ -30,10 +26,10 @@ const useTimer = ({ sound }: TimerProps) => {
   }, [readyTime]);
 
   useEffect(() => {
-    if (isRunning && audio) {
+    if (isRunning) {
       const timer = setInterval(() => {
         if (currentTime >= 1 && currentTime <= 4) {
-          audio.play();
+          play();
         }
         setCurrentTime((prevTime) => prevTime - 1);
         if (currentTime !== 0) {
@@ -42,7 +38,9 @@ const useTimer = ({ sound }: TimerProps) => {
         if (timerState === "Ready") {
           setCurrentTime(workoutTime);
           setTimerState("Workout");
-        } else if (timerState === "Workout") {
+          return;
+        }
+        if (timerState === "Workout") {
           setCurrentTime(restTime);
           setTimerState("Rest");
           if (currentSet === setCount) {
@@ -50,10 +48,13 @@ const useTimer = ({ sound }: TimerProps) => {
             setTimerState("Ready");
             setIsRunning(false);
           }
-        } else if (timerState === "Rest") {
+          return;
+        }
+        if (timerState === "Rest") {
           setCurrentSet((prevSet) => prevSet + 1);
           setCurrentTime(workoutTime);
           setTimerState("Workout");
+          return;
         }
       }, 1000);
 
@@ -67,11 +68,11 @@ const useTimer = ({ sound }: TimerProps) => {
     setCount,
     currentSet,
     readyTime,
-    audio,
     setIsRunning,
     setTimerState,
     setCurrentSet,
     currentTime,
+    play,
   ]);
 
   return {
