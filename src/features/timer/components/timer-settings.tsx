@@ -18,7 +18,10 @@ const TimerSettings = () => {
 
   return (
     <div className="p-6 rounded-xl shadow-lg">
-      <div className="grid grid-cols-2 gap-4 place-items-center">
+      <div className="flex justify-center text-3xl">
+        <h2 className="font-bold">Timer</h2>
+      </div>
+      <div className="grid grid-cols-2 gap-4 place-items-center mt-4">
         <label htmlFor="interval-ready">Ready</label>
         <div className="grid grid-cols-2 gap-1">
           <NumberInput

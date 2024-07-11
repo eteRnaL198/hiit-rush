@@ -9,7 +9,10 @@ const MusicSetting = () => {
 
   return (
     <div className="p-6 rounded-xl shadow-lg">
-      <div className="grid grid-cols-2 mb-4">
+      <div className="flex justify-center text-3xl">
+        <h2 className="font-bold">Music</h2>
+      </div>
+      <div className="grid grid-cols-2 mt-4">
         <label
           className="flex justify-center items-center"
           htmlFor="playlist-id"
