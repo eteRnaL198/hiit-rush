@@ -2,12 +2,12 @@
 
 import Timer from "@/features/timer/components/timer";
 import Main from "@/components/main";
-import Video from "@/features/video/components/video";
+import Music from "@/features/music/components/music";
 
 export default function Home() {
   return (
     <Main>
-      <Video />
+      <Music />
       <Timer />
     </Main>
   );

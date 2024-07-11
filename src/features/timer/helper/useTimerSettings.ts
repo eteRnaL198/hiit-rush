@@ -26,7 +26,7 @@ const useTimerSettings = () => {
   const [setCount, setSetCount] = useState(defaultTimerSettings.setCount);
   const router = useRouter();
   useEffect(() => {
-    const storedSettings = getStoredData<TimerData>();
+    const storedSettings = getStoredData<TimerData>("timer");
     if (!storedSettings) return;
     setReadyTime(storedSettings.readyTime);
     setWorkoutTime(storedSettings.workoutTime);

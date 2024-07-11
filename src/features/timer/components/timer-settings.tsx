@@ -1,7 +1,8 @@
 import NumberInput from "@/components/number-input";
 import useTimerSettings from "@/features/timer/helper/useTimerSettings";
 import Button from "@/components/button";
-import { writeToStorage } from "@/services/localstorage";
+import { updateStorage } from "@/services/localstorage";
+import { TimerData } from "@/utils/types";
 
 const TimerSettings = () => {
   const {
@@ -16,7 +17,7 @@ const TimerSettings = () => {
   } = useTimerSettings();
 
   return (
-    <>
+    <div className="p-6 rounded-xl shadow-lg">
       <div className="grid grid-cols-2 gap-4 place-items-center">
         <label htmlFor="interval-ready">Ready</label>
         <div className="grid grid-cols-2 gap-1">
@@ -59,11 +60,13 @@ const TimerSettings = () => {
         <Button
           label="Save"
           onClick={() => {
-            writeToStorage({ readyTime, workoutTime, restTime, setCount });
+            updateStorage<TimerData>({
+              timer: { readyTime, workoutTime, restTime, setCount },
+            });
           }}
         />
       </div>
-    </>
+    </div>
   );
 };
 
