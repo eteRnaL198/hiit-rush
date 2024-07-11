@@ -12,7 +12,7 @@ const MusicSetting = () => {
       <div className="flex justify-center text-3xl">
         <h2 className="font-bold">Music</h2>
       </div>
-      <div className="grid grid-cols-2 mt-4">
+      <div className="grid grid-cols-2 mt-6">
         <label
           className="flex justify-center items-center"
           htmlFor="playlist-id"
@@ -21,7 +21,7 @@ const MusicSetting = () => {
         </label>
         <TextInput id="playlist-id" value={id} setValue={setId} />
       </div>
-      <div className="mt-8 flex justify-center">
+      <div className="mt-6 flex justify-center">
         <Button
           label="Save"
           onClick={() => {
