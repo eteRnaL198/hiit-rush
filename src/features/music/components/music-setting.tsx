@@ -9,9 +9,14 @@ const MusicSetting = () => {
 
   return (
     <div className="p-6 rounded-xl shadow-lg">
-      <div className="flex justify-around mb-4">
-        <p>Playlist ID</p>
-        <TextInput value={id} setValue={setId} />
+      <div className="grid grid-cols-2 mb-4">
+        <label
+          className="flex justify-center items-center"
+          htmlFor="playlist-id"
+        >
+          Playlist ID
+        </label>
+        <TextInput id="playlist-id" value={id} setValue={setId} />
       </div>
       <div className="mt-8 flex justify-center">
         <Button
