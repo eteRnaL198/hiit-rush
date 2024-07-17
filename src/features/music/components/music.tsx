@@ -7,8 +7,7 @@ const Music = () => {
     <div className="flex flex-col justify-center items-center mb-8">
       {id ? (
         <iframe
-          width="560"
-          height="315"
+          className="w-full sm:w-4/5 h-auto aspect-video"
           src={`https://www.youtube.com/embed/playlist?list=${id}`}
           title="Background Music"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
