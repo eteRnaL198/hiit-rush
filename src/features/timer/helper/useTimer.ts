@@ -13,7 +13,7 @@ const useTimer = ({ sound }: TimerProps) => {
   const { readyTime, workoutTime, restTime, setCount } = useTimerSettings();
   const [currentTime, setCurrentTime] = useState(readyTime);
   const [isRunning, setIsRunning] = useState<boolean>(false);
-  const [timerState, setTimerState] = useState<TimerState>("Ready");
+  const [currentState, setCurrentState] = useState<TimerState>("Ready");
   const [currentSet, setCurrentSet] = useState(1);
 
   const [play] = useSound(sound);
@@ -21,7 +21,7 @@ const useTimer = ({ sound }: TimerProps) => {
   useEffect(() => {
     setCurrentTime(readyTime);
     setIsRunning(false);
-    setTimerState("Ready");
+    setCurrentState("Ready");
     setCurrentSet(1);
   }, [readyTime]);
 
@@ -35,25 +35,26 @@ const useTimer = ({ sound }: TimerProps) => {
         if (currentTime !== 0) {
           return;
         }
-        if (timerState === "Ready") {
+        if (currentState === "Ready") {
           setCurrentTime(workoutTime);
-          setTimerState("Workout");
+          setCurrentState("Workout");
           return;
         }
-        if (timerState === "Workout") {
+        if (currentState === "Workout" && currentSet !== setCount) {
           setCurrentTime(restTime);
-          setTimerState("Rest");
-          if (currentSet === setCount) {
-            setCurrentTime(readyTime);
-            setTimerState("Ready");
-            setIsRunning(false);
-          }
+          setCurrentState("Rest");
           return;
         }
-        if (timerState === "Rest") {
+        if (currentState === "Workout" && currentSet === setCount) {
+          setCurrentTime(0);
+          setCurrentState("Completed");
+          setIsRunning(false);
+          return;
+        }
+        if (currentState === "Rest") {
           setCurrentSet((prevSet) => prevSet + 1);
           setCurrentTime(workoutTime);
-          setTimerState("Workout");
+          setCurrentState("Workout");
           return;
         }
       }, 1000);
@@ -62,29 +63,34 @@ const useTimer = ({ sound }: TimerProps) => {
     }
   }, [
     isRunning,
-    timerState,
+    currentState,
     workoutTime,
     restTime,
     setCount,
     currentSet,
     readyTime,
     setIsRunning,
-    setTimerState,
+    setCurrentState,
     setCurrentSet,
     currentTime,
     play,
   ]);
 
+  const reset = () => {
+    setCurrentTime(readyTime);
+    setCurrentState("Ready");
+    setCurrentSet(1);
+    setIsRunning(false);
+  };
+
   return {
     readyTime,
     currentTime,
-    setCurrentTime,
-    timerState,
-    setTimerState,
+    currentState,
     currentSet,
-    setCurrentSet,
     isRunning,
     setIsRunning,
+    reset,
   };
 };
 

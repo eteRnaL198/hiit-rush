@@ -1,4 +1,4 @@
-export type TimerState = "Ready" | "Workout" | "Rest";
+export type TimerState = "Ready" | "Workout" | "Rest" | "Completed";
 
 export type TimerData = {
   readyTime: number;
