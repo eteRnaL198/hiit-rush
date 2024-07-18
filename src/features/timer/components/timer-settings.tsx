@@ -3,6 +3,7 @@ import useTimerSettings from "@/features/timer/helper/useTimerSettings";
 import Button from "@/components/button";
 import { updateStorage } from "@/services/localstorage";
 import { TimerData } from "@/utils/types";
+import Frame from "@/components/frame";
 
 const TimerSettings = () => {
   const {
@@ -17,7 +18,7 @@ const TimerSettings = () => {
   } = useTimerSettings();
 
   return (
-    <div className="p-6 rounded-xl shadow-lg">
+    <Frame>
       <div className="flex justify-center text-3xl">
         <h2 className="font-bold">Timer</h2>
       </div>
@@ -69,7 +70,7 @@ const TimerSettings = () => {
           }}
         />
       </div>
-    </div>
+    </Frame>
   );
 };
 

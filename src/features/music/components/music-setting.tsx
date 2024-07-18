@@ -3,12 +3,13 @@ import TextInput from "@/components/text-input";
 import { updateStorage } from "@/services/localstorage";
 import useMusicSettings from "../helper/useMusicSettings";
 import { MusicData } from "@/utils/types";
+import Frame from "@/components/frame";
 
 const MusicSetting = () => {
   const { id, setId } = useMusicSettings();
 
   return (
-    <div className="p-6 rounded-xl shadow-lg">
+    <Frame>
       <div className="flex justify-center text-3xl">
         <h2 className="font-bold">Music</h2>
       </div>
@@ -31,7 +32,7 @@ const MusicSetting = () => {
           }}
         />
       </div>
-    </div>
+    </Frame>
   );
 };
 export default MusicSetting;

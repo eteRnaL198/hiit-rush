@@ -2,6 +2,7 @@ import Button from "@/components/button";
 import sound from "/public/ticktack.mp3";
 import useTimer from "@/features/timer/helper/useTimer";
 import { useRouter } from "next/navigation";
+import Frame from "@/components/frame";
 
 const Timer = () => {
   const {
@@ -35,7 +36,7 @@ const Timer = () => {
         )}
       </div>
       {currentState === "Completed" && (
-        <div className="flex flex-col items-center gap-4 p-6 rounded-xl shadow-lg">
+        <Frame className="flex flex-col items-center gap-4">
           <p>Great job! Check it off on the calendar.</p>
           <Button
             label="Go to Calendar"
@@ -43,7 +44,7 @@ const Timer = () => {
               router.push("/calendar");
             }}
           />
-        </div>
+        </Frame>
       )}
     </div>
   );

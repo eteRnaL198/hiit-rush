@@ -1,3 +1,4 @@
+import Frame from "@/components/frame";
 import useMusicSettings from "../helper/useMusicSettings";
 
 const Music = () => {
@@ -14,9 +15,7 @@ const Music = () => {
           sandbox="allow-scripts allow-same-origin allow-popups"
         ></iframe>
       ) : (
-        <p className="w-3/5 p-6 text-center rounded-xl shadow-lg">
-          Music is not set
-        </p>
+        <Frame className="w-3/5 text-center">Music is not set</Frame>
       )}
     </div>
   );
