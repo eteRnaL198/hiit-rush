@@ -10,3 +10,9 @@ export type TimerData = {
 export type MusicData = {
   id: string;
 };
+
+export type CalendarData = {
+  [year: number]: {
+    [month: number]: number[];
+  };
+};
