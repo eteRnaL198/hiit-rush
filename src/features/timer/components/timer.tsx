@@ -39,7 +39,7 @@ const Timer = () => {
         <Frame className="flex flex-col items-center gap-4">
           <p>Great job! Check it off on the calendar.</p>
           <Button
-            label="Go to Calendar"
+            label="↗ Calendar"
             onClick={() => {
               router.push("/calendar");
             }}
