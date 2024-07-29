@@ -18,3 +18,7 @@ git clone https://github.com/eteRnaL198/hiit-rush.git
 npm install
 npm run dev
 ```
+
+## Deployment
+
+Automatically deployed to GitHub Pages on push to `release` branch.
